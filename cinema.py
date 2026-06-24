@@ -92,12 +92,22 @@ def validación_calificacion():
     return calificacion
 
 # Función Buscar película
-def buscar_pelicula(lista_pelicula):
-    print()
+def buscar_pelicula(lista_pelicula, titulo):
+    posicion = -1
+    for pelicula in lista_pelicula:
+        posicion += 1
+        if pelicula.get("titulo") == titulo:
+            break
+    if posicion < 0:
+        return -1
+    else:
+        return posicion
+
 
 # Función Eliminar película
-def eliminar_pelicula(lista_pelicula):
-    print()
+def eliminar_pelicula(lista_pelicula, posicion):
+    lista_pelicula.pop(posicion)
+    print("Se eliminó la película")
 
 # Función Actualizar dispónibilidad
 def actualizar_disponibilidad(lista_pelicula):
@@ -152,11 +162,28 @@ def cinema():
                 if pelicula is not None:
                     lista_peliculas.append(pelicula)
             case 2:
-                print("2")
+                titulo = input("Ingrese el título a buscar: ")
+                posicion = buscar_pelicula(lista_peliculas, titulo)
+                if posicion < 0:
+                    print("Película no encontrada")
+                else:
+                    print("Película encontrada")
+                    print(f"Título: {lista_peliculas[posicion].get("titulo")}")
+                    print(f"Duración: {lista_peliculas[posicion].get("duracion")}")
+                    print(f"Calificación: {lista_peliculas[posicion].get("calificacion")}")
             case 3:
-                print("3")
+                titulo = input("Ingrese el título a buscar: ")
+                posicion = buscar_pelicula(lista_peliculas, titulo)
+                if posicion < 0:
+                    print(f"La película {titulo} no se encuentra registrada.")
+                else:
+                    eliminar_pelicula(lista_peliculas, posicion)
             case 4:
-                actualizar_disponibilidad(lista_peliculas)
+                if len(lista_peliculas) == 0:
+                    print("No hay peliculas para actualizar")
+                else:
+                    actualizar_disponibilidad(lista_peliculas)
+                    print("Se han actualizado todas las películas correctamente")
             case 5:
                 actualizar_disponibilidad(lista_peliculas)
                 mostrar_peliculas(lista_peliculas)
