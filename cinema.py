@@ -93,15 +93,10 @@ def validación_calificacion():
 
 # Función Buscar película
 def buscar_pelicula(lista_pelicula, titulo):
-    posicion = -1
-    for pelicula in lista_pelicula:
-        posicion += 1
+    for indice, pelicula in enumerate(lista_pelicula):
         if pelicula.get("titulo") == titulo:
-            break
-    if posicion < 0:
-        return -1
-    else:
-        return posicion
+            return indice
+    return -1
 
 
 # Función Eliminar película
