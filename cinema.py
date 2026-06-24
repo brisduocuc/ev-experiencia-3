@@ -91,6 +91,38 @@ def validación_calificacion():
             print("Debe ingresar un número válido")
     return calificacion
 
+# Función Buscar película
+def buscar_pelicula(lista_pelicula):
+    print()
+
+# Función Eliminar película
+def eliminar_pelicula(lista_pelicula):
+    print()
+
+# Función Actualizar dispónibilidad
+def actualizar_disponibilidad(lista_pelicula):
+    for pelicula in lista_pelicula:
+        if pelicula.get("calificacion") >= 7.0:
+            pelicula["disponible"] = True
+        else:
+            pelicula["disponible"] = False
+
+# Función Mostrar películas
+def mostrar_peliculas(lista_pelicula):
+    print("=== LISTA DE PELICULAS ===")
+    if len(lista_pelicula) == 0:
+        print("No hay películas para mostrar.")
+    for pelicula in lista_pelicula:
+        print(f"Título: {pelicula.get("titulo")}")
+        print(f"Duración: {pelicula.get("duracion")}")
+        print(f"Calificación: {pelicula.get("calificacion")}")
+        if pelicula.get("disponible"):
+            print(f"Estado: DISPONIBLE")
+        else:
+            print("Estado: NO RECOMENDAD")
+        print("*********************************************\n")
+
+
 # Sistema cinema
 def cinema():
     # Inicializamos variable opcion
@@ -124,9 +156,10 @@ def cinema():
             case 3:
                 print("3")
             case 4:
-                print("4")
+                actualizar_disponibilidad(lista_peliculas)
             case 5:
-                print("5")
+                actualizar_disponibilidad(lista_peliculas)
+                mostrar_peliculas(lista_peliculas)
             case 6:
                 print("Gracias por usar el sistema. Vuelva Pronto")
 
